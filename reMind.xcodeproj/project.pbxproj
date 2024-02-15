@@ -94,10 +94,12 @@
 		6F4817A62B7EA91400C500E0 /* reMind */ = {
 			isa = PBXGroup;
 			children = (
-				6F4817A72B7EA91400C500E0 /* reMindApp.swift */,
-				6F4817A92B7EA91400C500E0 /* ContentView.swift */,
-				6F4817AB2B7EA91600C500E0 /* Assets.xcassets */,
-				6F4817AD2B7EA91600C500E0 /* Preview Content */,
+				6F4817D12B7EAAA600C500E0 /* App */,
+				6F4817DA2B7EAB0700C500E0 /* Features */,
+				6F4817D92B7EAB0300C500E0 /* Models */,
+				6F4817DC2B7EAB1B00C500E0 /* Resources */,
+				6F4817DB2B7EAB1500C500E0 /* Services */,
+				6F4817D22B7EAAAF00C500E0 /* Utils */,
 			);
 			path = reMind;
 			sourceTree = "<group>";
@@ -125,6 +127,108 @@
 				6F4817C42B7EA91600C500E0 /* reMindUITestsLaunchTests.swift */,
 			);
 			path = reMindUITests;
+			sourceTree = "<group>";
+		};
+		6F4817D12B7EAAA600C500E0 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				6F4817A72B7EA91400C500E0 /* reMindApp.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		6F4817D22B7EAAAF00C500E0 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				6F4817D82B7EAAEB00C500E0 /* Styles */,
+				6F4817D72B7EAAE300C500E0 /* Helpers */,
+				6F4817D62B7EAADD00C500E0 /* Components */,
+				6F4817D52B7EAAD400C500E0 /* Modifiers */,
+				6F4817D42B7EAACE00C500E0 /* Extensions */,
+				6F4817D32B7EAAC300C500E0 /* Protocols */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		6F4817D32B7EAAC300C500E0 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		6F4817D42B7EAACE00C500E0 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		6F4817D52B7EAAD400C500E0 /* Modifiers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Modifiers;
+			sourceTree = "<group>";
+		};
+		6F4817D62B7EAADD00C500E0 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		6F4817D72B7EAAE300C500E0 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		6F4817D82B7EAAEB00C500E0 /* Styles */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Styles;
+			sourceTree = "<group>";
+		};
+		6F4817D92B7EAB0300C500E0 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		6F4817DA2B7EAB0700C500E0 /* Features */ = {
+			isa = PBXGroup;
+			children = (
+				6F4817DD2B7EAB5100C500E0 /* Boxes */,
+			);
+			path = Features;
+			sourceTree = "<group>";
+		};
+		6F4817DB2B7EAB1500C500E0 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		6F4817DC2B7EAB1B00C500E0 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				6F4817AD2B7EA91600C500E0 /* Preview Content */,
+				6F4817AB2B7EA91600C500E0 /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		6F4817DD2B7EAB5100C500E0 /* Boxes */ = {
+			isa = PBXGroup;
+			children = (
+				6F4817A92B7EA91400C500E0 /* ContentView.swift */,
+			);
+			path = Boxes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
