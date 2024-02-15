@@ -97,6 +97,7 @@
 				6F4817D12B7EAAA600C500E0 /* App */,
 				6F4817DA2B7EAB0700C500E0 /* Features */,
 				6F4817D92B7EAB0300C500E0 /* Models */,
+				6F4817AD2B7EA91600C500E0 /* Preview Content */,
 				6F4817DC2B7EAB1B00C500E0 /* Resources */,
 				6F4817DB2B7EAB1500C500E0 /* Services */,
 				6F4817D22B7EAAAF00C500E0 /* Utils */,
@@ -217,7 +218,6 @@
 		6F4817DC2B7EAB1B00C500E0 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				6F4817AD2B7EA91600C500E0 /* Preview Content */,
 				6F4817AB2B7EA91600C500E0 /* Assets.xcassets */,
 			);
 			path = Resources;
