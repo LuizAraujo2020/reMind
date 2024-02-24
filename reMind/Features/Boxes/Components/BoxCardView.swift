@@ -7,12 +7,22 @@
 
 import SwiftUI
 
+enum BoxTheme: String {
+    case aquamarine
+    case mauve
+    case lavander
+
+    var render: Color {
+        Color(self.rawValue)
+    }
+}
+
 struct BoxCardView: View {
     @State private var boxName: String
     @State private var numberOfTerms: Int
-    @State private var theme: Palette
+    @State private var theme: BoxTheme
 
-    init(boxName: String, numberOfTerms: Int, theme: Palette) {
+    init(boxName: String, numberOfTerms: Int, theme: BoxTheme) {
         self.boxName = boxName
         self.numberOfTerms = numberOfTerms
         self.theme = theme
@@ -29,6 +39,7 @@ struct BoxCardView: View {
                 .background(Palette.reBlack.render.opacity(0.2))
                 .cornerRadius(10)
         }
+        .foregroundStyle(Palette.reBlack.render)
         .padding(16)
         .frame(width: 165, alignment: .leading)
         .background(theme.render)

@@ -19,10 +19,6 @@ enum Palette: String, CaseIterable {
     case reWhite
 
     var render: Color {
-//        if let theme = UserDefaults.standard.string(forKey: "theme") {
-//            return Color(theme + "-" + self.rawValue)
-//        }
-
         return Color(self.rawValue)
     }
 }
