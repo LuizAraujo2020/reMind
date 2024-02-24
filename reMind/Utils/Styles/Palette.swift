@@ -8,7 +8,7 @@
 import SwiftUI
 
 enum Palette: String, CaseIterable {
-    case label
+    case label = "label2"
     case background
     case lavander
     case aquamarine
