@@ -8,24 +8,38 @@
 import SwiftUI
 
 struct BoxCardView: View {
+    @State private var boxName: String
+    @State private var numberOfTerms: Int
+    @State private var theme: Palette
+
+    init(boxName: String, numberOfTerms: Int, theme: Palette) {
+        self.boxName = boxName
+        self.numberOfTerms = numberOfTerms
+        self.theme = theme
+    }
+
     var body: some View {
         VStack(alignment: .leading) {
-            Text("Box name")
+            Text(boxName)
                 .font(.title3)
                 .bold()
 
-            Label("100 terms", systemImage: "doc.plaintext.fill")
+            Label("\(numberOfTerms) term\(getPlural())", systemImage: "doc.plaintext.fill")
                 .padding(8)
                 .background(Palette.reBlack.render.opacity(0.2))
                 .cornerRadius(10)
         }
         .padding(16)
         .frame(width: 165, alignment: .leading)
-        .background(Palette.aquamarine.render)
+        .background(theme.render)
         .cornerRadius(10)
+    }
+
+    private func getPlural() -> String {
+        numberOfTerms == 1 ? "": "s"
     }
 }
 
 #Preview {
-    BoxCardView()
+    BoxCardView(boxName: "Box Name", numberOfTerms: 100, theme: .aquamarine)
 }
