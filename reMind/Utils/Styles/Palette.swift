@@ -8,7 +8,15 @@
 import SwiftUI
 
 enum Palette: String, CaseIterable {
-    case label, background, lavander, aquamarine, mauve, error, sucsess
+    case label
+    case background
+    case lavander
+    case aquamarine
+    case mauve
+    case error
+    case success
+    case reBlack
+    case reWhite
 
     var render: Color {
 //        if let theme = UserDefaults.standard.string(forKey: "theme") {

@@ -11,9 +11,7 @@ struct ContentView: View {
     @Environment(\.colorScheme) var colorScheme
 
     var body: some View {
-        Rectangle()
-        .fill(.clear)
-        .background(reBackground())
+        Text("Content")
     }
 }
 
