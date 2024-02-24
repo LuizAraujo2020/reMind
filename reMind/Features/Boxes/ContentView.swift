@@ -8,13 +8,12 @@
 import SwiftUI
 
 struct ContentView: View {
+    @Environment(\.colorScheme) var colorScheme
+
     var body: some View {
-        VStack {
-            ForEach(Palette.allCases, id: \.self) { color in
-                Rectangle()
-                    .fill(color.render)
-            }
-        }
+        Rectangle()
+        .fill(.clear)
+        .background(reBackground())
     }
 }
 
