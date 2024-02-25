@@ -1,5 +1,5 @@
 //
-//  ContentView.swift
+//  BoxesView.swift
 //  reMind
 //
 //  Created by Luiz Araujo on 15/02/24.
@@ -14,7 +14,7 @@ struct Box: Identifiable {
     var theme: BoxTheme
 }
 
-struct ContentView: View {
+struct BoxesView: View {
     @State var boxes: [Box]
 
     private let columns: [GridItem] = [
@@ -60,5 +60,5 @@ struct ContentView: View {
         Box(name: "Box 3", numberOfTerms: 30, theme: .lavander)
     ]
 
-    return ContentView(boxes: boxes)
+    return BoxesView(boxes: boxes)
 }

@@ -17,6 +17,7 @@ enum Palette: String, CaseIterable {
     case success
     case reBlack
     case reWhite
+    case selectionColor
 
     var render: Color {
         return Color(self.rawValue)
