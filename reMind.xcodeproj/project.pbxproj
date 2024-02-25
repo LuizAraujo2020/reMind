@@ -24,6 +24,10 @@
 		6F24BF5B2B8B8CB1000B2C7F /* Term.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F24BF5A2B8B8CB1000B2C7F /* Term.swift */; };
 		6F24BF5D2B8B8CDC000B2C7F /* SwipeReview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F24BF5C2B8B8CDC000B2C7F /* SwipeReview.swift */; };
 		6F24BF5F2B8B8E4B000B2C7F /* SwipperCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F24BF5E2B8B8E4B000B2C7F /* SwipperCard.swift */; };
+		6F24BF622B8BADA9000B2C7F /* reMind.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6F24BF602B8BADA9000B2C7F /* reMind.xcdatamodeld */; };
+		6F24BF652B8BB003000B2C7F /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F24BF642B8BB003000B2C7F /* CoreDataStack.swift */; };
+		6F24BF672B8BB232000B2C7F /* CoreDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F24BF662B8BB232000B2C7F /* CoreDataModel.swift */; };
+		6F24BF692B8BB3DE000B2C7F /* ActiveRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F24BF682B8BB3DE000B2C7F /* ActiveRecord.swift */; };
 		6F2A74D92B8A5F6900796775 /* reBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F2A74D82B8A5F6900796775 /* reBadge.swift */; };
 		6F4817A82B7EA91400C500E0 /* reMindApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F4817A72B7EA91400C500E0 /* reMindApp.swift */; };
 		6F4817AA2B7EA91400C500E0 /* BoxesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F4817A92B7EA91400C500E0 /* BoxesView.swift */; };
@@ -35,6 +39,7 @@
 		6FA228A02B899D23001280D5 /* Palette.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FA2289F2B899D23001280D5 /* Palette.swift */; };
 		6FA228A22B89A159001280D5 /* reBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FA228A12B89A159001280D5 /* reBackground.swift */; };
 		6FA228A52B89A581001280D5 /* BoxCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FA228A42B89A581001280D5 /* BoxCardView.swift */; };
+		6FF1FB552B8BBB6500039464 /* BoxesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FF1FB542B8BBB6500039464 /* BoxesViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,6 +77,10 @@
 		6F24BF5A2B8B8CB1000B2C7F /* Term.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Term.swift; sourceTree = "<group>"; };
 		6F24BF5C2B8B8CDC000B2C7F /* SwipeReview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeReview.swift; sourceTree = "<group>"; };
 		6F24BF5E2B8B8E4B000B2C7F /* SwipperCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipperCard.swift; sourceTree = "<group>"; };
+		6F24BF612B8BADA9000B2C7F /* reMind.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = reMind.xcdatamodel; sourceTree = "<group>"; };
+		6F24BF642B8BB003000B2C7F /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
+		6F24BF662B8BB232000B2C7F /* CoreDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataModel.swift; sourceTree = "<group>"; };
+		6F24BF682B8BB3DE000B2C7F /* ActiveRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveRecord.swift; sourceTree = "<group>"; };
 		6F2A74D82B8A5F6900796775 /* reBadge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = reBadge.swift; sourceTree = "<group>"; };
 		6F4817A42B7EA91400C500E0 /* reMind.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = reMind.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6F4817A72B7EA91400C500E0 /* reMindApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = reMindApp.swift; sourceTree = "<group>"; };
@@ -86,6 +95,7 @@
 		6FA2289F2B899D23001280D5 /* Palette.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Palette.swift; sourceTree = "<group>"; };
 		6FA228A12B89A159001280D5 /* reBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = reBackground.swift; sourceTree = "<group>"; };
 		6FA228A42B89A581001280D5 /* BoxCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoxCardView.swift; sourceTree = "<group>"; };
+		6FF1FB542B8BBB6500039464 /* BoxesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoxesViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -173,6 +183,16 @@
 			path = Componets;
 			sourceTree = "<group>";
 		};
+		6F24BF632B8BAFE9000B2C7F /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				6F24BF602B8BADA9000B2C7F /* reMind.xcdatamodeld */,
+				6F24BF642B8BB003000B2C7F /* CoreDataStack.swift */,
+				6F24BF662B8BB232000B2C7F /* CoreDataModel.swift */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
 		6F48179B2B7EA91400C500E0 = {
 			isa = PBXGroup;
 			children = (
@@ -256,6 +276,7 @@
 		6F4817D32B7EAAC300C500E0 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
+				6F24BF682B8BB3DE000B2C7F /* ActiveRecord.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -329,6 +350,7 @@
 		6F4817DB2B7EAB1500C500E0 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				6F24BF632B8BAFE9000B2C7F /* CoreData */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -345,6 +367,7 @@
 			isa = PBXGroup;
 			children = (
 				6F4817A92B7EA91400C500E0 /* BoxesView.swift */,
+				6FF1FB542B8BBB6500039464 /* BoxesViewModel.swift */,
 				6FA228A32B89A560001280D5 /* Components */,
 			);
 			path = Boxes;
@@ -496,6 +519,7 @@
 				6F1D00B12B8ADF6000D6F88F /* reButtonStyle.swift in Sources */,
 				6F1D00A92B8AD6D600D6F88F /* reRadioButton.swift in Sources */,
 				6F1D00A72B8AD22600D6F88F /* reTextEditor.swift in Sources */,
+				6F24BF692B8BB3DE000B2C7F /* ActiveRecord.swift in Sources */,
 				6F1D00B72B8AE4B000D6F88F /* TodaysCardView.swift in Sources */,
 				6F24BF5F2B8B8E4B000B2C7F /* SwipperCard.swift in Sources */,
 				6F24BF572B8B8AF9000B2C7F /* SwipperView.swift in Sources */,
@@ -503,10 +527,14 @@
 				6F24BF5B2B8B8CB1000B2C7F /* Term.swift in Sources */,
 				6F24BF592B8B8B89000B2C7F /* SwipperLabel.swift in Sources */,
 				6F2A74D92B8A5F6900796775 /* reBadge.swift in Sources */,
+				6FF1FB552B8BBB6500039464 /* BoxesViewModel.swift in Sources */,
 				6F1D00AF2B8ADDE900D6F88F /* TermEditorView.swift in Sources */,
 				6F4817AA2B7EA91400C500E0 /* BoxesView.swift in Sources */,
 				6F1D00B92B8AE57200D6F88F /* Box.swift in Sources */,
+				6F24BF672B8BB232000B2C7F /* CoreDataModel.swift in Sources */,
+				6F24BF622B8BADA9000B2C7F /* reMind.xcdatamodeld in Sources */,
 				6F1D00AC2B8AD92500D6F88F /* reRadionButtonGroup.swift in Sources */,
+				6F24BF652B8BB003000B2C7F /* CoreDataStack.swift in Sources */,
 				6F4817A82B7EA91400C500E0 /* reMindApp.swift in Sources */,
 				6F1D00BB2B8AE61900D6F88F /* reColorButtonStyle.swift in Sources */,
 				6F24BF5D2B8B8CDC000B2C7F /* SwipeReview.swift in Sources */,
@@ -840,6 +868,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		6F24BF602B8BADA9000B2C7F /* reMind.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				6F24BF612B8BADA9000B2C7F /* reMind.xcdatamodel */,
+			);
+			currentVersion = 6F24BF612B8BADA9000B2C7F /* reMind.xcdatamodel */;
+			path = reMind.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 6F48179C2B7EA91400C500E0 /* Project object */;
 }

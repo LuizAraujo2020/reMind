@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SwipperView: View {
     @State var review: SwipeReview
-    @State private var direction: SwipperDirection = .left
+    @State private var direction: SwipperDirection = .none
 
     var body: some View {
         VStack {
@@ -18,26 +18,24 @@ struct SwipperView: View {
 
             Spacer()
 
-            SwipperCard(
-                direction: $direction,
-                theme: .aquamarine) {
-                    Text("Term")
-
-                } backContent: {
-                    Text("Meaning")
-                }
-
+            SwipperCard(direction: $direction,
+                        frontContent: {
+                Text("Term")
+            }, backContent: {
+                Text("Meaning")
+            })
 
             Spacer()
 
-            Button {
-                print("Finish review")
-            } label: {
+            Button(action: {
+                print("finish review")
+            }, label: {
                 Text("Finish Review")
                     .frame(maxWidth: .infinity, alignment: .center)
-            }
+            })
             .buttonStyle(reButtonStyle())
             .padding(.bottom, 30)
+
         }
         .padding(.horizontal)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -47,38 +45,21 @@ struct SwipperView: View {
     }
 }
 
-#Preview {
-    NavigationStack {
-        SwipperView(review: SwipeReview(termsToReview: [
-            Term(
-                boxID: UUID(),
-                term: "Term",
-                meaning: "Meaning",
-                theme: .mauve,
-                creationDate: Date(),
-                lastReview: Date(),
-                srs: .first
-            )
-        ]))
+struct SwipperView_Previews: PreviewProvider {
+    static let term: Term = {
+        let term = Term(context: CoreDataStack.inMemory.managedContext)
+        term.value = "Term"
+        term.meaning = "Meaning"
+        term.rawSRS = 0
+        term.rawTheme = 0
+
+        return term
+    }()
+    static var previews: some View {
+        NavigationStack {
+            SwipperView(review: SwipeReview(termsToReview: [
+                Term(context: CoreDataStack.inMemory.managedContext)
+            ]))
+        }
     }
 }
-
-
-//struct SwipperView_Previews: PreviewProvider {
-//    static let term: Term = {
-//        let term = Term(context: CoreDataStack.inMemory.managedContext)
-//        term.value = "Term"
-//        term.meaning = "Meaning"
-//        term.rawSRS = 0
-//        term.rawTheme = 0
-//
-//        return term
-//    }()
-//    static var previews: some View {
-//        NavigationStack {
-//            SwipperView(review: SwipeReview(termsToReview: [
-//                Term(context: CoreDataStack.inMemory.managedContext)
-//            ]))
-//        }
-//    }
-//}

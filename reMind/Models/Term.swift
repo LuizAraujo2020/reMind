@@ -8,46 +8,35 @@
 import Foundation
 import CoreData
 
-//@objc(Term)
-//public final class Term: NSManagedObject {
-//
-//}
-//
-//extension Term {
-//    @nonobjc public class func fetchRequest() -> NSFetchRequest<Term> {
-//        return NSFetchRequest<Term>(entityName: "Term")
-//    }
-//
-//    @NSManaged public var creationDate: Date?
-//    @NSManaged public var identifier: UUID?
-//    @NSManaged public var lastReview: Date?
-//    @NSManaged public var meaning: String?
-//    @NSManaged public var rawSRS: Int16
-//    @NSManaged public var rawTheme: Int16
-//    @NSManaged public var value: String?
-//    @NSManaged public var boxID: Box?
-//
-//}
-//
-//extension Term: CoreDataModel {
-//    var srs: SpacedRepetitionSystem {
-//        return SpacedRepetitionSystem(rawValue: Int(rawSRS)) ?? SpacedRepetitionSystem.first
-//    }
-//
-//    var theme: reTheme {
-//        return reTheme(rawValue: Int(self.rawTheme)) ?? reTheme.lavender
-//    }
-//}
+@objc(Term)
+public final class Term: NSManagedObject {
 
-struct Term: Identifiable {
-    let id = UUID()
-    var boxID: UUID
-    var term: String
-    var meaning: String
-    var theme: Palette
-    var creationDate: Date
-    var lastReview: Date
-    var srs: SpacedRepetitionSystem
+}
+
+extension Term {
+    @nonobjc public class func fetchRequest() -> NSFetchRequest<Term> {
+        return NSFetchRequest<Term>(entityName: "Term")
+    }
+
+    @NSManaged public var creationDate: Date?
+    @NSManaged public var identifier: UUID?
+    @NSManaged public var lastReview: Date?
+    @NSManaged public var meaning: String?
+    @NSManaged public var rawSRS: Int16
+    @NSManaged public var rawTheme: Int16
+    @NSManaged public var value: String?
+    @NSManaged public var boxID: Box?
+
+}
+
+extension Term: CoreDataModel {
+    var srs: SpacedRepetitionSystem {
+        return SpacedRepetitionSystem(rawValue: Int(rawSRS)) ?? SpacedRepetitionSystem.first
+    }
+
+    var theme: reTheme {
+        return reTheme(rawValue: Int(self.rawTheme)) ?? reTheme.lavender
+    }
 }
 
 enum SpacedRepetitionSystem: Int {

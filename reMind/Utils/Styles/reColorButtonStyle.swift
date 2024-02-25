@@ -9,11 +9,11 @@ import SwiftUI
 
 struct reColorButtonStyle: ButtonStyle {
     @State var theme: reTheme
-
+    
     init(_ theme: reTheme) {
         self.theme = theme
     }
-
+    
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
             .padding()

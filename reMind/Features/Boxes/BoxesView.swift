@@ -8,7 +8,13 @@
 import SwiftUI
 
 struct BoxesView: View {
-    @State var boxes: [Box]
+    @ObservedObject var viewModel: BoxesViewModel
+
+    @State var isCreatingNewBox = false
+    @State var name: String
+    @State var keywords: String
+    @State var description: String
+    @State var theme: Int
 
     private let columns: [GridItem] = [
         GridItem(.adaptive(minimum: 140), spacing: 20),
@@ -19,13 +25,17 @@ struct BoxesView: View {
         NavigationStack {
             ScrollView(.vertical, showsIndicators: false) {
                 LazyVGrid(columns: columns, spacing: 20) {
-                    ForEach(boxes) { box in
-                        BoxCardView(
-                            boxName: box.name,
-                            numberOfTerms: box.numberOfTerms,
-                            theme: box.theme
-                        )
-                        .reBadge( box.numberOfTerms)
+                    ForEach(viewModel.boxes) { box in
+                        NavigationLink {
+                            BoxView(box: box)
+                        } label: {
+                            BoxCardView(
+                                boxName: box.name ?? "Name",
+                                numberOfTerms: box.numberOfTerms,
+                                theme: box.theme
+                            )
+                            .reBadge(viewModel.getNumberOfPendingTerms(of: box))
+                        }
                     }
                 }
                 .padding(40)
@@ -36,22 +46,39 @@ struct BoxesView: View {
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button {
-                        print("plus button tapped!")
+                        isCreatingNewBox = true
                     } label: {
                         Image(systemName: "plus")
                     }
                 }
             }
         }
+        .sheet(isPresented: $isCreatingNewBox) {
+            BoxEditorView(name: <#T##String#>, keywords: <#T##String#>, description: <#T##String#>, theme: <#T##Int#>)
+        }
     }
 }
 
 #Preview {
-    let boxes: [Box] = [
-        Box(name: "Box 1", numberOfTerms: 10, theme: .mauve, terms: []),
-        Box(name: "Box 2", numberOfTerms: 20, theme: .aquamarine, terms: []),
-        Box(name: "Box 3", numberOfTerms: 30, theme: .lavender, terms: [])
-    ]
+    let boxes: [Box] = {
+        let box1 = Box(context: CoreDataStack.inMemory.managedContext)
+        box1.name = "Box 1"
+        box1.rawTheme = 0
 
-    return BoxesView(boxes: boxes)
+//        let term = Term(context: CoreDataStack.inMemory.managedContext)
+//        term.lastReview = Calendar.current.date(byAdding: .day, value: -5, to: Date())!
+//        box1.addToTerms(term)
+
+        let box2 = Box(context: CoreDataStack.inMemory.managedContext)
+        box2.name = "Box 2"
+        box2.rawTheme = 1
+
+        let box3 = Box(context: CoreDataStack.inMemory.managedContext)
+        box3.name = "Box 3"
+        box3.rawTheme = 2
+
+        return [box1, box2, box3]
+    }()
+
+    return BoxesView(viewModel: BoxesViewModel())
 }

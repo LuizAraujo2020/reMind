@@ -11,7 +11,7 @@ import SwiftUI
 struct reMindApp: App {
     var body: some Scene {
         WindowGroup {
-            BoxesView(boxes: [])
+            BoxesView(viewModel: .init())
         }
     }
 }
