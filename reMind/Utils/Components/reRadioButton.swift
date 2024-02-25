@@ -39,6 +39,6 @@ struct reRadioButton: View {
     reRadioButton(
         currentSelection: .constant(0),
         tag: 0,
-        color: BoxTheme.mauve.render
+        color: reTheme.mauve.render
     )
 }

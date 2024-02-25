@@ -19,6 +19,11 @@
 		6F1D00B72B8AE4B000D6F88F /* TodaysCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F1D00B62B8AE4B000D6F88F /* TodaysCardView.swift */; };
 		6F1D00B92B8AE57200D6F88F /* Box.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F1D00B82B8AE57100D6F88F /* Box.swift */; };
 		6F1D00BB2B8AE61900D6F88F /* reColorButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F1D00BA2B8AE61900D6F88F /* reColorButtonStyle.swift */; };
+		6F24BF572B8B8AF9000B2C7F /* SwipperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F24BF562B8B8AF9000B2C7F /* SwipperView.swift */; };
+		6F24BF592B8B8B89000B2C7F /* SwipperLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F24BF582B8B8B89000B2C7F /* SwipperLabel.swift */; };
+		6F24BF5B2B8B8CB1000B2C7F /* Term.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F24BF5A2B8B8CB1000B2C7F /* Term.swift */; };
+		6F24BF5D2B8B8CDC000B2C7F /* SwipeReview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F24BF5C2B8B8CDC000B2C7F /* SwipeReview.swift */; };
+		6F24BF5F2B8B8E4B000B2C7F /* SwipperCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F24BF5E2B8B8E4B000B2C7F /* SwipperCard.swift */; };
 		6F2A74D92B8A5F6900796775 /* reBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F2A74D82B8A5F6900796775 /* reBadge.swift */; };
 		6F4817A82B7EA91400C500E0 /* reMindApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F4817A72B7EA91400C500E0 /* reMindApp.swift */; };
 		6F4817AA2B7EA91400C500E0 /* BoxesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F4817A92B7EA91400C500E0 /* BoxesView.swift */; };
@@ -62,6 +67,11 @@
 		6F1D00B62B8AE4B000D6F88F /* TodaysCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodaysCardView.swift; sourceTree = "<group>"; };
 		6F1D00B82B8AE57100D6F88F /* Box.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Box.swift; sourceTree = "<group>"; };
 		6F1D00BA2B8AE61900D6F88F /* reColorButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = reColorButtonStyle.swift; sourceTree = "<group>"; };
+		6F24BF562B8B8AF9000B2C7F /* SwipperView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipperView.swift; sourceTree = "<group>"; };
+		6F24BF582B8B8B89000B2C7F /* SwipperLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipperLabel.swift; sourceTree = "<group>"; };
+		6F24BF5A2B8B8CB1000B2C7F /* Term.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Term.swift; sourceTree = "<group>"; };
+		6F24BF5C2B8B8CDC000B2C7F /* SwipeReview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeReview.swift; sourceTree = "<group>"; };
+		6F24BF5E2B8B8E4B000B2C7F /* SwipperCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipperCard.swift; sourceTree = "<group>"; };
 		6F2A74D82B8A5F6900796775 /* reBadge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = reBadge.swift; sourceTree = "<group>"; };
 		6F4817A42B7EA91400C500E0 /* reMind.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = reMind.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6F4817A72B7EA91400C500E0 /* reMindApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = reMindApp.swift; sourceTree = "<group>"; };
@@ -143,6 +153,24 @@
 				6F1D00B62B8AE4B000D6F88F /* TodaysCardView.swift */,
 			);
 			path = Components;
+			sourceTree = "<group>";
+		};
+		6F24BF542B8B8ADE000B2C7F /* Swipper */ = {
+			isa = PBXGroup;
+			children = (
+				6F24BF552B8B8AEA000B2C7F /* Componets */,
+				6F24BF562B8B8AF9000B2C7F /* SwipperView.swift */,
+			);
+			path = Swipper;
+			sourceTree = "<group>";
+		};
+		6F24BF552B8B8AEA000B2C7F /* Componets */ = {
+			isa = PBXGroup;
+			children = (
+				6F24BF582B8B8B89000B2C7F /* SwipperLabel.swift */,
+				6F24BF5E2B8B8E4B000B2C7F /* SwipperCard.swift */,
+			);
+			path = Componets;
 			sourceTree = "<group>";
 		};
 		6F48179B2B7EA91400C500E0 = {
@@ -280,6 +308,8 @@
 			isa = PBXGroup;
 			children = (
 				6F1D00B82B8AE57100D6F88F /* Box.swift */,
+				6F24BF5A2B8B8CB1000B2C7F /* Term.swift */,
+				6F24BF5C2B8B8CDC000B2C7F /* SwipeReview.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -287,6 +317,7 @@
 		6F4817DA2B7EAB0700C500E0 /* Features */ = {
 			isa = PBXGroup;
 			children = (
+				6F24BF542B8B8ADE000B2C7F /* Swipper */,
 				6F1D00B22B8AE1CD00D6F88F /* Box */,
 				6F1D009F2B8ACA5800D6F88F /* BoxEditor */,
 				6F4817DD2B7EAB5100C500E0 /* Boxes */,
@@ -466,7 +497,11 @@
 				6F1D00A92B8AD6D600D6F88F /* reRadioButton.swift in Sources */,
 				6F1D00A72B8AD22600D6F88F /* reTextEditor.swift in Sources */,
 				6F1D00B72B8AE4B000D6F88F /* TodaysCardView.swift in Sources */,
+				6F24BF5F2B8B8E4B000B2C7F /* SwipperCard.swift in Sources */,
+				6F24BF572B8B8AF9000B2C7F /* SwipperView.swift in Sources */,
 				6F1D00A52B8ACE3200D6F88F /* BoxEditorView.swift in Sources */,
+				6F24BF5B2B8B8CB1000B2C7F /* Term.swift in Sources */,
+				6F24BF592B8B8B89000B2C7F /* SwipperLabel.swift in Sources */,
 				6F2A74D92B8A5F6900796775 /* reBadge.swift in Sources */,
 				6F1D00AF2B8ADDE900D6F88F /* TermEditorView.swift in Sources */,
 				6F4817AA2B7EA91400C500E0 /* BoxesView.swift in Sources */,
@@ -474,6 +509,7 @@
 				6F1D00AC2B8AD92500D6F88F /* reRadionButtonGroup.swift in Sources */,
 				6F4817A82B7EA91400C500E0 /* reMindApp.swift in Sources */,
 				6F1D00BB2B8AE61900D6F88F /* reColorButtonStyle.swift in Sources */,
+				6F24BF5D2B8B8CDC000B2C7F /* SwipeReview.swift in Sources */,
 				6FA228A52B89A581001280D5 /* BoxCardView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

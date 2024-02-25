@@ -48,9 +48,9 @@ struct BoxesView: View {
 
 #Preview {
     let boxes: [Box] = [
-        Box(name: "Box 1", numberOfTerms: 10, theme: .mauve),
-        Box(name: "Box 2", numberOfTerms: 20, theme: .aquamarine),
-        Box(name: "Box 3", numberOfTerms: 30, theme: .lavander)
+        Box(name: "Box 1", numberOfTerms: 10, theme: .mauve, terms: []),
+        Box(name: "Box 2", numberOfTerms: 20, theme: .aquamarine, terms: []),
+        Box(name: "Box 3", numberOfTerms: 30, theme: .lavender, terms: [])
     ]
 
     return BoxesView(boxes: boxes)

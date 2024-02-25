@@ -7,22 +7,12 @@
 
 import SwiftUI
 
-enum BoxTheme: String {
-    case aquamarine
-    case mauve
-    case lavander
-
-    var render: Color {
-        Color(self.rawValue)
-    }
-}
-
 struct BoxCardView: View {
     @State private var boxName: String
     @State private var numberOfTerms: Int
-    @State private var theme: BoxTheme
+    @State private var theme: reTheme
 
-    init(boxName: String, numberOfTerms: Int, theme: BoxTheme) {
+    init(boxName: String, numberOfTerms: Int, theme: reTheme) {
         self.boxName = boxName
         self.numberOfTerms = numberOfTerms
         self.theme = theme

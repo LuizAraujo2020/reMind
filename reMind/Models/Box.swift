@@ -59,7 +59,8 @@ struct Box: Identifiable {
     let id = UUID()
     var name: String
     var numberOfTerms: Int
-    var theme: BoxTheme
+    var theme: reTheme
+    var terms: [Term]
 }
 
 enum reTheme: Int {
