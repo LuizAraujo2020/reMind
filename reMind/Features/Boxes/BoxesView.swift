@@ -7,13 +7,6 @@
 
 import SwiftUI
 
-struct Box: Identifiable {
-    let id = UUID()
-    var name: String
-    var numberOfTerms: Int
-    var theme: BoxTheme
-}
-
 struct BoxesView: View {
     @State var boxes: [Box]
 
