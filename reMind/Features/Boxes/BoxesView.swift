@@ -11,10 +11,10 @@ struct BoxesView: View {
     @ObservedObject var viewModel: BoxesViewModel
 
     @State var isCreatingNewBox = false
-    @State var name: String
-    @State var keywords: String
-    @State var description: String
-    @State var theme: Int
+//    @State var name: String
+//    @State var keywords: String
+//    @State var description: String
+//    @State var theme: Int
 
     private let columns: [GridItem] = [
         GridItem(.adaptive(minimum: 140), spacing: 20),
@@ -27,7 +27,7 @@ struct BoxesView: View {
                 LazyVGrid(columns: columns, spacing: 20) {
                     ForEach(viewModel.boxes) { box in
                         NavigationLink {
-                            BoxView(box: box)
+                            BoxView(box: BoxAux(box: box), updateBox: viewModel.updateBox)
                         } label: {
                             BoxCardView(
                                 boxName: box.name ?? "Name",
@@ -54,7 +54,26 @@ struct BoxesView: View {
             }
         }
         .sheet(isPresented: $isCreatingNewBox) {
-            BoxEditorView(name: <#T##String#>, keywords: <#T##String#>, description: <#T##String#>, theme: <#T##Int#>)
+//            BoxEditorView(name: <#T##String#>, keywords: <#T##String#>, description: <#T##String#>, theme: <#T##Int#>)
+            BoxEditorView(
+                box: BoxAux(
+                    id: UUID(),
+                    name: "",
+                    keywords: "",
+                    descriptions: "",
+                    rawTheme: 0,
+                    terms: []
+                ), handle: viewModel.createNewBox)
+//            BoxEditorView(
+//                box: BoxAux(
+//                    id: UUID(),
+//                    name: "",
+//                    keywords: "",
+//                    descriptions: "",
+//                    rawTheme: 0,
+//                    terms: []
+//                )
+//            )
         }
     }
 }

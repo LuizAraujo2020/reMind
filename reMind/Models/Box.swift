@@ -21,6 +21,8 @@ extension Box {
 
     @NSManaged public var identifier: UUID?
     @NSManaged public var name: String?
+    @NSManaged public var keywords: String
+    @NSManaged public var descriptions: String
     @NSManaged public var rawTheme: Int16
     @NSManaged public var terms: NSSet?
 

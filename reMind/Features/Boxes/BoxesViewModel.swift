@@ -27,4 +27,29 @@ final class BoxesViewModel: ObservableObject {
         }
         return filteredTerms.count <= 0 ? nil : filteredTerms.count
     }
+
+    func createNewBox(_ boxAux: BoxAux) {
+        let box = Box(context: CoreDataStack.inMemory.managedContext)
+        box.identifier = boxAux.id
+        box.name = boxAux.name
+        box.rawTheme = Int16(boxAux.rawTheme)
+        box.descriptions = boxAux.descriptions
+        box.keywords = boxAux.keywords
+
+        boxes = Box.all()
+    }
+
+    func updateBox(_ boxAux: BoxAux) {
+        boxes.indices.forEach { index in
+            if boxes[index].identifier == boxAux.id {
+                boxes[index].name = boxAux.name
+                boxes[index].descriptions = boxAux.descriptions
+                boxes[index].rawTheme = Int16(boxAux.rawTheme)
+                boxes[index].keywords = boxAux.keywords
+//                boxes[index]. = boxAux.
+            }
+        }
+
+        boxes = Box.all()
+    }
 }

@@ -7,21 +7,52 @@
 
 import SwiftUI
 
-struct BoxView: View {
-    var box: Box
+struct BoxAux: Identifiable {
+    internal init(id: UUID = UUID(), name: String, keywords: String, descriptions: String, rawTheme: Int16, terms: [TermAux]) {
+        self.id = id
+        self.name = name
+        self.keywords = keywords
+        self.descriptions = descriptions
+        self.rawTheme = Int(rawTheme)
+        self.terms = terms
+    }
 
+    internal init(box: Box) {
+        self.id = box.identifier ?? UUID()
+        self.name = box.name ?? ""
+        self.keywords = box.keywords
+        self.descriptions = box.descriptions
+        self.rawTheme = Int(box.rawTheme)
+        self.terms = []
+    }
+
+    var id = UUID()
+
+    var name: String
+    var keywords: String
+    var descriptions: String
+    var rawTheme: Int
+    var terms: [TermAux]
+}
+
+struct BoxView: View {
+    var box: BoxAux
+
+    @State private var isEditingBox = false
     @State private var searchText: String = ""
 
-    private var filteredTerms: [Term] {
-        let termsSet = box.terms as? Set<Term> ?? []
-        let terms = Array(termsSet).sorted { lhs, rhs in
-            (lhs.value ?? "") < (rhs.value ?? "")
+    let updateBox: (_ boxAux: BoxAux) -> Void
+
+    private var filteredTerms: [TermAux] {
+//        let termsSet = box.terms as? Set<TermAux> ?? []
+        let terms = box.terms.sorted { lhs, rhs in
+            lhs.value < rhs.value
         }
 
         if searchText.isEmpty {
             return terms
         } else {
-            return terms.filter { ($0.value ?? "").contains(searchText) }
+            return terms.filter { ($0.value).contains(searchText) }
         }
     }
 
@@ -31,7 +62,7 @@ struct BoxView: View {
                             theme: .mauve)
             Section {
                 ForEach(filteredTerms, id: \.self) { term in
-                    Text(term.value ?? "Unknown")
+                    Text(term.value)
                         .padding(.vertical, 8)
                         .fontWeight(.bold)
                         .swipeActions(edge: .trailing) {
@@ -56,12 +87,13 @@ struct BoxView: View {
         }
         .scrollContentBackground(.hidden)
         .background(reBackground())
-        .navigationTitle(box.name ?? "Unknown")
+        .navigationTitle(box.name)
         .searchable(text: $searchText, prompt: "")
         .toolbar {
             ToolbarItemGroup(placement: .navigationBarTrailing) {
                 Button {
                     print("edit")
+                    isEditingBox = true
                 } label: {
                     Image(systemName: "square.and.pencil")
                 }
@@ -71,8 +103,10 @@ struct BoxView: View {
                 } label: {
                     Image(systemName: "plus")
                 }
-
             }
+        }
+        .sheet(isPresented: $isEditingBox) {
+            BoxEditorView(box: box, handle: updateBox)
         }
     }
 }
@@ -104,7 +138,7 @@ struct BoxView_Previews: PreviewProvider {
 
     static var previews: some View {
         NavigationStack {
-            BoxView(box: BoxView_Previews.box)
+            BoxView(box: BoxAux(box: BoxView_Previews.box), updateBox: { _ in })
         }
     }
 }

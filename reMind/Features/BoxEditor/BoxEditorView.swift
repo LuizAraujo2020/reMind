@@ -8,29 +8,29 @@
 import SwiftUI
 
 struct BoxEditorView: View {
-    @State var name: String
-    @State var keywords: String
-    @State var description: String
-    @State var theme: Int
+    @Environment(\.dismiss) var dismiss
+    @State var box: BoxAux
+
+    let handle: (_ boxAux: BoxAux) -> Void
 
     var body: some View {
         NavigationStack {
             VStack(spacing: 20) {
                 reTextField(
-                    text: $name,
+                    text: $box.name,
                     title: "Name"
                 )
 
                 reTextField(
-                    text: $keywords,
+                    text: $box.keywords,
                     title: "Keywords",
                     caption: "Separated by , (comma)"
 
                 )
 
-                reTextEditor(text: $description, title: "Description")
+                reTextEditor(text: $box.descriptions, title: "Description")
 
-                reRadionButtonGroup(currentSelection: $theme, title: "Theme")
+                reRadionButtonGroup(currentSelection: $box.rawTheme, title: "Theme")
 
                 Spacer()
             }
@@ -42,6 +42,7 @@ struct BoxEditorView: View {
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button("cancel") {
                         print("Cancel")
+                        dismiss()
                     }
                     .fontWeight(.bold)
                 }
@@ -49,6 +50,8 @@ struct BoxEditorView: View {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button("Save") {
                         print("Salve")
+                        handle(box)
+                        dismiss()
                     }
                     .fontWeight(.bold)
                 }
@@ -58,5 +61,28 @@ struct BoxEditorView: View {
 }
 
 #Preview {
-    BoxEditorView(name: "Asdf", keywords: "asdads, asdasd", description: "Description", theme: 0)
+    let box: Box = {
+        let box = Box(context: CoreDataStack.inMemory.managedContext)
+        box.name = "Box 1"
+        box.rawTheme = 0
+        BoxView_Previews.terms.forEach { term in
+            box.addToTerms(term)
+        }
+        return box
+    }()
+
+    let terms: [Term] = {
+        let term1 = Term(context: CoreDataStack.inMemory.managedContext)
+        term1.value = "Term 1"
+
+        let term2 = Term(context: CoreDataStack.inMemory.managedContext)
+        term2.value = "Term 2"
+
+        let term3 = Term(context: CoreDataStack.inMemory.managedContext)
+        term3.value = "Term 3"
+
+        return [term1, term2, term3]
+    }()
+
+    return BoxEditorView(box: BoxAux(box: BoxView_Previews.box)) { _ in }
 }
