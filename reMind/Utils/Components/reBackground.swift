@@ -15,7 +15,7 @@ struct reBackground: View {
             LinearGradient(
                 colors: [
                     Palette.aquamarine.render,
-                    Palette.lavander.render,
+                    Palette.lavender.render,
                     Palette.mauve.render
                 ],
                 startPoint: .topLeading,

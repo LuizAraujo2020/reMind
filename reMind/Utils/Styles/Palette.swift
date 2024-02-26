@@ -10,7 +10,7 @@ import SwiftUI
 enum Palette: String, CaseIterable {
     case label = "label2"
     case background
-    case lavander
+    case lavender
     case aquamarine
     case mauve
     case error

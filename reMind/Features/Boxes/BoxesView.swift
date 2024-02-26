@@ -11,10 +11,6 @@ struct BoxesView: View {
     @ObservedObject var viewModel: BoxesViewModel
 
     @State var isCreatingNewBox = false
-//    @State var name: String
-//    @State var keywords: String
-//    @State var description: String
-//    @State var theme: Int
 
     private let columns: [GridItem] = [
         GridItem(.adaptive(minimum: 140), spacing: 20),
@@ -54,7 +50,6 @@ struct BoxesView: View {
             }
         }
         .sheet(isPresented: $isCreatingNewBox) {
-//            BoxEditorView(name: <#T##String#>, keywords: <#T##String#>, description: <#T##String#>, theme: <#T##Int#>)
             BoxEditorView(
                 box: BoxAux(
                     id: UUID(),
@@ -64,16 +59,6 @@ struct BoxesView: View {
                     rawTheme: 0,
                     terms: []
                 ), handle: viewModel.createNewBox)
-//            BoxEditorView(
-//                box: BoxAux(
-//                    id: UUID(),
-//                    name: "",
-//                    keywords: "",
-//                    descriptions: "",
-//                    rawTheme: 0,
-//                    terms: []
-//                )
-//            )
         }
     }
 }
@@ -83,10 +68,6 @@ struct BoxesView: View {
         let box1 = Box(context: CoreDataStack.inMemory.managedContext)
         box1.name = "Box 1"
         box1.rawTheme = 0
-
-//        let term = Term(context: CoreDataStack.inMemory.managedContext)
-//        term.lastReview = Calendar.current.date(byAdding: .day, value: -5, to: Date())!
-//        box1.addToTerms(term)
 
         let box2 = Box(context: CoreDataStack.inMemory.managedContext)
         box2.name = "Box 2"

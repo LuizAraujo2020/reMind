@@ -57,7 +57,7 @@ extension Box: CoreDataModel {
     var numberOfTerms: Int { self.terms?.count ?? 0 }
 }
 
-enum reTheme: Int {
+enum reTheme: Int, CaseIterable {
     case aquamarine = 0
     case mauve
     case lavender
