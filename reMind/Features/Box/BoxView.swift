@@ -7,41 +7,15 @@
 
 import SwiftUI
 
-struct BoxAux: Identifiable {
-    internal init(id: UUID = UUID(), name: String, keywords: String, descriptions: String, rawTheme: Int16, terms: [TermAux]) {
-        self.id = id
-        self.name = name
-        self.keywords = keywords
-        self.descriptions = descriptions
-        self.rawTheme = Int(rawTheme)
-        self.terms = terms
-    }
-
-    internal init(box: Box) {
-        self.id = box.identifier ?? UUID()
-        self.name = box.name ?? ""
-        self.keywords = box.keywords
-        self.descriptions = box.descriptions
-        self.rawTheme = Int(box.rawTheme)
-        self.terms = []
-    }
-
-    var id = UUID()
-
-    var name: String
-    var keywords: String
-    var descriptions: String
-    var rawTheme: Int
-    var terms: [TermAux]
-}
-
 struct BoxView: View {
-    var box: BoxAux
+    var box: Box
 
     @State private var isEditingBox = false
+    @State private var isCreatingTerm = false
     @State private var searchText: String = ""
 
     let updateBox: (_ boxAux: BoxAux) -> Void
+    let createTerm: (_ termAux: TermAux) -> Void
 
     private var filteredTerms: [TermAux] {
 //        let termsSet = box.terms as? Set<TermAux> ?? []
@@ -59,7 +33,7 @@ struct BoxView: View {
     var body: some View {
         List {
             TodaysCardView(numberOfPendingCards: 0,
-                            theme: .mauve)
+                           theme: reTheme(rawValue: box.rawTheme) ?? .aquamarine)
             Section {
                 ForEach(filteredTerms, id: \.self) { term in
                     Text(term.value)
@@ -71,7 +45,6 @@ struct BoxView: View {
                             } label: {
                                 Image(systemName: "trash")
                             }
-
                         }
                 }
             } header: {
@@ -100,6 +73,7 @@ struct BoxView: View {
 
                 Button {
                     print("add")
+                    isCreatingTerm = true
                 } label: {
                     Image(systemName: "plus")
                 }
@@ -107,6 +81,17 @@ struct BoxView: View {
         }
         .sheet(isPresented: $isEditingBox) {
             BoxEditorView(box: box, handle: updateBox)
+        }
+        .sheet(isPresented: $isCreatingTerm) {
+            TermEditorView(
+                term: "",
+                meaning: "",
+                boxID: box.id,
+                createTerm: createTerm
+            )
+            .onDisappear {
+
+            }
         }
     }
 }
@@ -138,7 +123,11 @@ struct BoxView_Previews: PreviewProvider {
 
     static var previews: some View {
         NavigationStack {
-            BoxView(box: BoxAux(box: BoxView_Previews.box), updateBox: { _ in })
+            BoxView(box: BoxAux(box: BoxView_Previews.box),
+                    updateBox: {
+                _ in
+            },
+                    createTerm: { _ in })
         }
     }
 }

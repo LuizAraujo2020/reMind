@@ -8,8 +8,13 @@
 import SwiftUI
 
 struct TermEditorView: View {
+    @Environment(\.dismiss) var dismiss
+
     @State var term: String
     @State var meaning: String
+    var boxID: UUID
+
+    let createTerm: (TermAux) -> Void
 
     var body: some View {
         NavigationStack {
@@ -22,6 +27,14 @@ struct TermEditorView: View {
 
                 Button {
                     print("Save and Add New")
+
+                    DispatchQueue.global().async {
+                        createTerm(TermAux(boxID: boxID, meaning: meaning, term: term))
+//                        createTerm(TermAux(boxID: <#T##UUID#>, meaning: <#T##String#>, term: <#T##String#>)
+                    }
+
+                    term = ""
+                    meaning = ""
 
                 } label: {
                     Text("Save and Add New")
@@ -36,6 +49,7 @@ struct TermEditorView: View {
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button("cancel") {
+                        dismiss()
                         print("Cancel")
                     }
                     .fontWeight(.bold)
@@ -43,7 +57,8 @@ struct TermEditorView: View {
 
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button("Save") {
-                        print("Salve")
+                        createTerm(TermAux(boxID: boxID, meaning: meaning, term: term))
+                        dismiss()
                     }
                     .fontWeight(.bold)
                 }
@@ -53,5 +68,5 @@ struct TermEditorView: View {
 }
 
 #Preview {
-    TermEditorView(term: "", meaning: "")
+    TermEditorView(term: "", meaning: "", boxID: UUID()) { _ in }
 }

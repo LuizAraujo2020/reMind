@@ -23,7 +23,11 @@ struct BoxesView: View {
                 LazyVGrid(columns: columns, spacing: 20) {
                     ForEach(viewModel.boxes) { box in
                         NavigationLink {
-                            BoxView(box: BoxAux(box: box), updateBox: viewModel.updateBox)
+                            BoxView(
+                                box: BoxAux(box: box),
+                                updateBox: viewModel.updateBox,
+                                createTerm: viewModel.createTerm
+                            )
                         } label: {
                             BoxCardView(
                                 boxName: box.name ?? "Name",

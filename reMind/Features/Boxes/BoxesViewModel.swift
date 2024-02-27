@@ -19,8 +19,7 @@ final class BoxesViewModel: ObservableObject {
         let term = box.terms as? Set<Term> ?? []
         let filteredTerms = term.filter { term in
             let srs = Int(term.rawSRS)
-            guard let lasReview = term.lastReview,
-                  let nextReview = Calendar.current.date(byAdding: .day, value: srs, to: lasReview)
+            guard let nextReview = Calendar.current.date(byAdding: .day, value: srs, to: term.lastReview)
             else { return false }
 
             return nextReview <= today
@@ -39,6 +38,7 @@ final class BoxesViewModel: ObservableObject {
         boxes = Box.all()
     }
 
+    // MARK: - Box
     func updateBox(_ boxAux: BoxAux) {
         boxes.indices.forEach { index in
             if boxes[index].identifier == boxAux.id {
@@ -46,10 +46,30 @@ final class BoxesViewModel: ObservableObject {
                 boxes[index].descriptions = boxAux.descriptions
                 boxes[index].rawTheme = Int16(boxAux.rawTheme)
                 boxes[index].keywords = boxAux.keywords
-//                boxes[index]. = boxAux.
             }
         }
 
         boxes = Box.all()
+    }
+
+    // MARK: - Term
+    func createTerm(_ termAux: TermAux) {
+        let term = Term(context: CoreDataStack.inMemory.managedContext)
+        term.value = termAux.value
+        term.meaning = termAux.meaning
+
+        boxes.forEach { box in
+            if box.identifier == termAux.boxID {
+                term.boxID = box
+            }
+        }
+
+//        box.identifier = boxAux.id
+//        box.name = boxAux.name
+//        box.rawTheme = Int16(boxAux.rawTheme)
+//        box.descriptions = boxAux.descriptions
+//        box.keywords = boxAux.keywords
+
+//        boxes = Box.all()
     }
 }

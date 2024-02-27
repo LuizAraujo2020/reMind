@@ -4,18 +4,18 @@
         <attribute name="descriptions" attributeType="String" defaultValueString=""/>
         <attribute name="identifier" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="keywords" attributeType="String" defaultValueString=""/>
-        <attribute name="name" optional="YES" attributeType="String"/>
-        <attribute name="rawTheme" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="name" attributeType="String" defaultValueString=""/>
+        <attribute name="rawTheme" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <relationship name="terms" optional="YES" toMany="YES" minCount="1" deletionRule="Cascade" destinationEntity="Term" inverseName="boxID" inverseEntity="Term"/>
     </entity>
     <entity name="Term" representedClassName="Term" syncable="YES">
-        <attribute name="creationDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
-        <attribute name="identifier" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
-        <attribute name="lastReview" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
-        <attribute name="meaning" optional="YES" attributeType="String"/>
-        <attribute name="newSRS" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="rawTheme" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="value" optional="YES" attributeType="String"/>
+        <attribute name="creationDate" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="identifier" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="lastReview" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="meaning" attributeType="String" defaultValueString=""/>
+        <attribute name="newSRS" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="rawTheme" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="value" attributeType="String" defaultValueString=""/>
         <relationship name="boxID" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Box" inverseName="terms" inverseEntity="Box"/>
     </entity>
 </model>

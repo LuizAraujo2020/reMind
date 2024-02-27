@@ -9,7 +9,7 @@ import SwiftUI
 
 struct BoxEditorView: View {
     @Environment(\.dismiss) var dismiss
-    @State var box: BoxAux
+    @State var box: Box
 
     let handle: (_ boxAux: BoxAux) -> Void
 
