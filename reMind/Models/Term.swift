@@ -29,8 +29,22 @@ extension Term {
 }
 
 extension Term: CoreDataModel {
+
+    /// Check if it is pending.
+    var isPending: Bool {
+
+        let srs = Int(self.rawSRS)
+
+        guard srs > 0 else { return true }
+
+        guard let nextReview = Calendar.current.date(byAdding: .day, value: srs, to: self.lastReview)
+        else { return false }
+
+        return nextReview <= Date()
+    }
+
     var srs: SpacedRepetitionSystem {
-        return SpacedRepetitionSystem(rawValue: Int(rawSRS)) ?? SpacedRepetitionSystem.first
+        return SpacedRepetitionSystem(rawValue: rawSRS) ?? SpacedRepetitionSystem.first
     }
 
     var theme: reTheme {
@@ -38,7 +52,7 @@ extension Term: CoreDataModel {
     }
 }
 
-enum SpacedRepetitionSystem: Int {
+enum SpacedRepetitionSystem: Int16 {
     case none = 0
     case first = 1
     case second = 2
@@ -47,19 +61,45 @@ enum SpacedRepetitionSystem: Int {
     case fifth = 8
     case sixth = 13
     case seventh = 21
+
+    var next: Self {
+        switch self {
+        case .none: return .first
+        case .first: return .second
+        case .second: return.third
+        case .third: return .fourth
+        case .fourth: return.fifth
+        case .fifth: return .sixth
+        case .sixth, .seventh: return .seventh
+
+        }
+    }
+
+    var previous: Self {
+        switch self {
+        case .none, .first: return .none
+        case .second: return.first
+        case .third: return .second
+        case .fourth: return.third
+        case .fifth: return .fourth
+        case .sixth: return .fifth
+        case .seventh: return .sixth
+
+        }
+    }
 }
 
 
 struct TermAux: Identifiable, Hashable {
     internal init(term: Term) {
-        self.id = term.identifier ?? UUID()
+        self.id = term.identifier 
         self.boxID = term.boxID?.identifier ?? UUID()
-        self.creationDate = term.creationDate ?? Date()
-        self.lastReview = term.lastReview ?? Date()
-        self.meaning = term.meaning ?? ""
+        self.creationDate = term.creationDate 
+        self.lastReview = term.lastReview 
+        self.meaning = term.meaning 
         self.rawSRS = Int(term.rawSRS)
         self.rawTheme = Int(term.rawTheme)
-        self.value = term.value ?? ""
+        self.value = term.value 
     }
 
     internal init(

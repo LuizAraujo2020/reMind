@@ -24,7 +24,11 @@ struct BoxesView: View {
                 LazyVGrid(columns: columns, spacing: 20) {
                     ForEach(viewModel.boxes) { box in
                         NavigationLink {
-                            BoxView(box: box, createTerm: viewModel.createTerm)
+                            BoxView(
+                                box: box,
+                                termsToReview: viewModel.getPendingTerms(of: box),
+                                createTerm: viewModel.createTerm
+                            )
                             
                         } label: {
                             BoxCardView(box: box)
@@ -57,21 +61,21 @@ struct BoxesView: View {
 }
 
 #Preview {
-    let boxes: [Box] = {
-        let box1 = Box(context: CoreDataStack.inMemory.managedContext)
-        box1.name = "Box 1"
-        box1.rawTheme = 0
-
-        let box2 = Box(context: CoreDataStack.inMemory.managedContext)
-        box2.name = "Box 2"
-        box2.rawTheme = 1
-
-        let box3 = Box(context: CoreDataStack.inMemory.managedContext)
-        box3.name = "Box 3"
-        box3.rawTheme = 2
-
-        return [box1, box2, box3]
-    }()
+//    let boxes: [Box] = {
+//        let box1 = Box(context: CoreDataStack.inMemory.managedContext)
+//        box1.name = "Box 1"
+//        box1.rawTheme = 0
+//
+//        let box2 = Box(context: CoreDataStack.inMemory.managedContext)
+//        box2.name = "Box 2"
+//        box2.rawTheme = 1
+//
+//        let box3 = Box(context: CoreDataStack.inMemory.managedContext)
+//        box3.name = "Box 3"
+//        box3.rawTheme = 2
+//
+//        return [box1, box2, box3]
+//    }()
 
     return BoxesView(viewModel: BoxesViewModel())
 }

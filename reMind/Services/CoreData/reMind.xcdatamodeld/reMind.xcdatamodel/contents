@@ -13,7 +13,7 @@
         <attribute name="identifier" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="lastReview" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="meaning" attributeType="String" defaultValueString=""/>
-        <attribute name="newSRS" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="rawSRS" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="rawTheme" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="value" attributeType="String" defaultValueString=""/>
         <relationship name="boxID" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Box" inverseName="terms" inverseEntity="Box"/>

@@ -9,11 +9,11 @@ import SwiftUI
 
 struct SwipperCard<FrontContent: View, BackContent: View>: View {
     @Binding var direction: SwipperDirection
+    var theme: reTheme
 
     @ViewBuilder var frontContent: () -> FrontContent
     @ViewBuilder var backContent: () -> BackContent
 
-    var theme: reTheme = .lavender
 
     // Tap States
     @State private var isFlipped: Bool = false
@@ -109,7 +109,7 @@ struct SwipperCard<FrontContent: View, BackContent: View>: View {
 
 struct SwipperCard_Previews: PreviewProvider {
     static var previews: some View {
-        SwipperCard(direction: .constant(.none)) {
+        SwipperCard(direction: .constant(.none), theme: .aquamarine) {
             Text("Term")
         } backContent: {
             Text("Meaning")

@@ -12,7 +12,11 @@ struct reMindApp: App {
     @StateObject var boxesVM = BoxesViewModel()
     var body: some Scene {
         WindowGroup {
-            BoxesView(viewModel: boxesVM)
+            NavigationStack {
+                NavigationLink("Next") {
+                    BoxesView(viewModel: boxesVM)
+                }
+            }
         }
     }
 }

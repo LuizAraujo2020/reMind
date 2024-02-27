@@ -14,6 +14,8 @@ struct BoxView: View {
     @State private var isCreatingTerm = false
     @State private var searchText: String = ""
 
+
+    var termsToReview: [Term]
     let createTerm: (_ termAux: TermAux) -> Void
 
     private var filteredTerms: [Term] {
@@ -31,21 +33,29 @@ struct BoxView: View {
 
     var body: some View {
         List {
-            TodaysCardView(numberOfPendingCards: 0,
+            TodaysCardView(numberOfPendingCards: termsToReview.count,
                            theme: reTheme(rawValue: box.rawTheme) ?? .aquamarine)
             Section {
                 ForEach(filteredTerms, id: \.self) { term in
-                    Text(term.value)
-                        .padding(.vertical, 8)
-                        .fontWeight(.bold)
-                        .swipeActions(edge: .trailing) {
-                            Button(role: .destructive) {
-                                print("delete")
-                                term.destroy()
-                            } label: {
-                                Image(systemName: "trash")
+                    NavigationLink {
+                        SwipperView(
+                            review: SwipeReview(termsToReview: termsToReview, termsReviewed: [])
+                        )
+
+                    } label: {
+                        Text("\(term.isPending ? "->" : "") \(term.value)")
+                            .padding(.vertical, 8)
+                            .fontWeight(.bold)
+                            .swipeActions(edge: .trailing) {
+                                Button(role: .destructive) {
+                                    print("delete")
+                                    term.destroy()
+                                } label: {
+                                    Image(systemName: "trash")
+                                }
                             }
-                        }
+                    }
+
                 }
             } header: {
                 Text("All Cards")
@@ -121,6 +131,7 @@ struct BoxView_Previews: PreviewProvider {
         NavigationStack {
             BoxView(
                 box: BoxView_Previews.box,
+                termsToReview: [],
                 createTerm: { _ in })
         }
     }

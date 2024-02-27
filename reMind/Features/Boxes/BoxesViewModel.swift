@@ -8,6 +8,7 @@
 import Foundation
 import CoreData
 
+@MainActor
 final class BoxesViewModel: ObservableObject {
     @Published var boxes = [Box]()
 
@@ -43,22 +44,37 @@ final class BoxesViewModel: ObservableObject {
     }
 
     func fetch() {
-        boxes = Box.all().sorted(by: { l, r in
-            l.name < r.name
-        })
+        DispatchQueue.main.async { [weak self] in
+            guard let self else { return }
+            self.boxes = Box.all().sorted(by: { l, r in
+                l.name < r.name
+            })
+
+            self.objectWillChange.send()
+        }
     }
 
     func getNumberOfPendingTerms(of box: Box) -> Int? {
         let today = Date()
         let term = box.terms as? Set<Term> ?? []
-        let filteredTerms = term.filter { term in
-            let srs = Int(term.rawSRS)
-            guard let nextReview = Calendar.current.date(byAdding: .day, value: srs, to: term.lastReview)
-            else { return false }
 
-            return nextReview <= today
-        }
+        let filteredTerms = term.filter { $0.isPending }
+
+        fetch()
+
         return filteredTerms.count <= 0 ? nil : filteredTerms.count
+    }
+
+    /// Gets the pendings terms
+    func getPendingTerms(of box: Box) -> [Term] {
+        let today = Date()
+        let term = box.terms as? Set<Term> ?? []
+
+        let filteredTerms = term.filter { $0.isPending }
+
+        fetch()
+
+        return Array(filteredTerms)
     }
 
     // MARK: - Box
@@ -70,7 +86,7 @@ final class BoxesViewModel: ObservableObject {
         box.descriptions = boxAux.descriptions
         box.keywords = boxAux.keywords
 
-        boxes = Box.all()
+        fetch()
     }
 
 
@@ -80,11 +96,20 @@ final class BoxesViewModel: ObservableObject {
         term.value = termAux.value
         term.meaning = termAux.meaning
 
+        term.creationDate = Date()
+        term.identifier = termAux.id
+        term.lastReview = Calendar.current.date(byAdding: .day, value: -1, to: Date()) ?? Date()
+
+        term.rawSRS = 0
+
         boxes.forEach { box in
             if box.identifier == termAux.boxID {
                 term.boxID = box
-//                box.addToTerms(term)
+                box.addToTerms(term)
+                term.rawTheme = box.rawTheme
             }
         }
+
+        fetch()
     }
 }

@@ -10,21 +10,27 @@ import SwiftUI
 struct SwipperView: View {
     @State var review: SwipeReview
     @State private var direction: SwipperDirection = .none
+    @State private var currentTerm = 0
 
     var body: some View {
         VStack {
-            SwipperLabel(direction: $direction)
-                .padding()
+            if !review.termsToReview.isEmpty {
+                SwipperLabel(direction: $direction)
+                    .padding()
 
-            Spacer()
+                Spacer()
 
-            SwipperCard(direction: $direction,
-                        frontContent: {
-                Text("Term")
-            }, backContent: {
-                Text("Meaning")
-            })
+                SwipperCard(direction: $direction,
+                            theme: review.termsToReview[currentTerm].theme,
+                            frontContent: {
+                    Text(review.termsToReview[currentTerm].value)
 
+                },
+                            backContent: {
+                    Text(review.termsToReview[currentTerm].meaning)
+                    //                    Text("Meaning")
+                })
+            }
             Spacer()
 
             Button(action: {
@@ -35,13 +41,34 @@ struct SwipperView: View {
             })
             .buttonStyle(reButtonStyle())
             .padding(.bottom, 30)
-
         }
         .padding(.horizontal)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(reBackground())
         .navigationTitle("\(review.termsToReview.count) terms left")
         .navigationBarTitleDisplayMode(.inline)
+        .onChange(of: direction) { _, newValue in
+            handleDirection(newValue)
+        }
+    }
+
+    private func handleDirection(_ direction: SwipperDirection = .none) {
+        guard direction != .none else { return }
+
+        /// Remove from the list pending to review and put in the reviewed.
+        let temp = review.termsToReview.remove(at: currentTerm)
+        temp.lastReview = Date()
+
+        review.termsReviewed.append(temp)
+
+        switch direction {
+        case .none: break
+        case .right:
+            temp.rawSRS = (SpacedRepetitionSystem(rawValue: temp.rawSRS)?.next ?? .first).rawValue
+
+        case .left:
+            temp.rawSRS = (SpacedRepetitionSystem(rawValue: temp.rawSRS)?.previous ?? .first).rawValue
+        }
     }
 }
 

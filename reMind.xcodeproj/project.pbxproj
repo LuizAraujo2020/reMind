@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6F1CA03C2B8E729C00339C5D /* TextValidation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F1CA03B2B8E729C00339C5D /* TextValidation.swift */; };
 		6F1D00A12B8ACA9000D6F88F /* reTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F1D00A02B8ACA9000D6F88F /* reTextField.swift */; };
 		6F1D00A32B8ACC9400D6F88F /* reTextFieldStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F1D00A22B8ACC9400D6F88F /* reTextFieldStyle.swift */; };
 		6F1D00A52B8ACE3200D6F88F /* BoxEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F1D00A42B8ACE3200D6F88F /* BoxEditorView.swift */; };
@@ -62,6 +63,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6F1CA03B2B8E729C00339C5D /* TextValidation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextValidation.swift; sourceTree = "<group>"; };
 		6F1D00A02B8ACA9000D6F88F /* reTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = reTextField.swift; sourceTree = "<group>"; };
 		6F1D00A22B8ACC9400D6F88F /* reTextFieldStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = reTextFieldStyle.swift; sourceTree = "<group>"; };
 		6F1D00A42B8ACE3200D6F88F /* BoxEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoxEditorView.swift; sourceTree = "<group>"; };
@@ -316,6 +318,7 @@
 		6F4817D72B7EAAE300C500E0 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				6F1CA03B2B8E729C00339C5D /* TextValidation.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -539,6 +542,7 @@
 				6F1D00AF2B8ADDE900D6F88F /* TermEditorView.swift in Sources */,
 				6F4817AA2B7EA91400C500E0 /* BoxesView.swift in Sources */,
 				6F1D00B92B8AE57200D6F88F /* Box.swift in Sources */,
+				6F1CA03C2B8E729C00339C5D /* TextValidation.swift in Sources */,
 				6F24BF672B8BB232000B2C7F /* CoreDataModel.swift in Sources */,
 				6F24BF622B8BADA9000B2C7F /* reMind.xcdatamodeld in Sources */,
 				6F1D00AC2B8AD92500D6F88F /* reRadionButtonGroup.swift in Sources */,
