@@ -8,19 +8,18 @@
 import SwiftUI
 
 struct BoxView: View {
-    var box: Box
+    @ObservedObject var box: Box
 
     @State private var isEditingBox = false
     @State private var isCreatingTerm = false
     @State private var searchText: String = ""
 
-    let updateBox: (_ boxAux: BoxAux) -> Void
     let createTerm: (_ termAux: TermAux) -> Void
 
-    private var filteredTerms: [TermAux] {
-//        let termsSet = box.terms as? Set<TermAux> ?? []
-        let terms = box.terms.sorted { lhs, rhs in
-            lhs.value < rhs.value
+    private var filteredTerms: [Term] {
+        let termsSet = box.terms as? Set<Term> ?? []
+        let terms = Array(termsSet).sorted { lhs, rhs in
+            (lhs.value) < (rhs.value)
         }
 
         if searchText.isEmpty {
@@ -42,6 +41,7 @@ struct BoxView: View {
                         .swipeActions(edge: .trailing) {
                             Button(role: .destructive) {
                                 print("delete")
+                                term.destroy()
                             } label: {
                                 Image(systemName: "trash")
                             }
@@ -80,18 +80,15 @@ struct BoxView: View {
             }
         }
         .sheet(isPresented: $isEditingBox) {
-            BoxEditorView(box: box, handle: updateBox)
+            BoxEditorView(box: box)
         }
         .sheet(isPresented: $isCreatingTerm) {
             TermEditorView(
                 term: "",
                 meaning: "",
-                boxID: box.id,
+                boxID: box.identifier,
                 createTerm: createTerm
             )
-            .onDisappear {
-
-            }
         }
     }
 }
@@ -120,14 +117,11 @@ struct BoxView_Previews: PreviewProvider {
         return [term1, term2, term3]
     }()
 
-
     static var previews: some View {
         NavigationStack {
-            BoxView(box: BoxAux(box: BoxView_Previews.box),
-                    updateBox: {
-                _ in
-            },
-                    createTerm: { _ in })
+            BoxView(
+                box: BoxView_Previews.box,
+                createTerm: { _ in })
         }
     }
 }

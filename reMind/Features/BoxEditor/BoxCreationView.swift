@@ -1,16 +1,18 @@
 //
-//  BoxEditorView.swift
+//  BoxCreationVIew.swift
 //  reMind
 //
-//  Created by Luiz Araujo on 24/02/24.
+//  Created by Luiz Araujo on 27/02/24.
 //
 
 import SwiftUI
 
-struct BoxEditorView: View {
+struct BoxCreationView: View {
     @Environment(\.dismiss) var dismiss
 
-    @ObservedObject var box: Box
+    @State private var box = BoxAux()
+    
+    let create: (_ boxAux: BoxAux) -> Void
 
     var body: some View {
         NavigationStack {
@@ -34,7 +36,7 @@ struct BoxEditorView: View {
             }
             .padding()
             .background(reBackground())
-            .navigationTitle("Editing Box")
+            .navigationTitle("New Box")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
@@ -47,6 +49,8 @@ struct BoxEditorView: View {
 
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button("Save") {
+                        print("Salve")
+                        create(box)
                         dismiss()
                     }
                     .fontWeight(.bold)
@@ -57,28 +61,5 @@ struct BoxEditorView: View {
 }
 
 #Preview {
-    let box: Box = {
-        let box = Box(context: CoreDataStack.inMemory.managedContext)
-        box.name = "Box 1"
-        box.rawTheme = 0
-        BoxView_Previews.terms.forEach { term in
-            box.addToTerms(term)
-        }
-        return box
-    }()
-
-    let terms: [Term] = {
-        let term1 = Term(context: CoreDataStack.inMemory.managedContext)
-        term1.value = "Term 1"
-
-        let term2 = Term(context: CoreDataStack.inMemory.managedContext)
-        term2.value = "Term 2"
-
-        let term3 = Term(context: CoreDataStack.inMemory.managedContext)
-        term3.value = "Term 3"
-
-        return [term1, term2, term3]
-    }()
-
-    return BoxEditorView(box: BoxView_Previews.box)
+    BoxCreationView { _ in }
 }

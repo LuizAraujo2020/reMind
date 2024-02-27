@@ -9,9 +9,10 @@ import SwiftUI
 
 @main
 struct reMindApp: App {
+    @StateObject var boxesVM = BoxesViewModel()
     var body: some Scene {
         WindowGroup {
-            BoxesView(viewModel: .init())
+            BoxesView(viewModel: boxesVM)
         }
     }
 }

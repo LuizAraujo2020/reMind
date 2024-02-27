@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct BoxesView: View {
+
     @ObservedObject var viewModel: BoxesViewModel
 
     @State var isCreatingNewBox = false
@@ -23,18 +24,11 @@ struct BoxesView: View {
                 LazyVGrid(columns: columns, spacing: 20) {
                     ForEach(viewModel.boxes) { box in
                         NavigationLink {
-                            BoxView(
-                                box: BoxAux(box: box),
-                                updateBox: viewModel.updateBox,
-                                createTerm: viewModel.createTerm
-                            )
+                            BoxView(box: box, createTerm: viewModel.createTerm)
+                            
                         } label: {
-                            BoxCardView(
-                                boxName: box.name ?? "Name",
-                                numberOfTerms: box.numberOfTerms,
-                                theme: box.theme
-                            )
-                            .reBadge(viewModel.getNumberOfPendingTerms(of: box))
+                            BoxCardView(box: box)
+                                .reBadge(viewModel.getNumberOfPendingTerms(of: box))
                         }
                     }
                 }
@@ -54,15 +48,10 @@ struct BoxesView: View {
             }
         }
         .sheet(isPresented: $isCreatingNewBox) {
-            BoxEditorView(
-                box: BoxAux(
-                    id: UUID(),
-                    name: "",
-                    keywords: "",
-                    descriptions: "",
-                    rawTheme: 0,
-                    terms: []
-                ), handle: viewModel.createNewBox)
+            BoxCreationView(create: viewModel.createNewBox)
+        }
+        .refreshable {
+            viewModel.boxes = Box.all()
         }
     }
 }

@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct reRadioButton: View {
-    @Binding var currentSelection: Int
+    @Binding var currentSelection: Int16
 
-    let tag: Int
+    let tag: Int16
     let color: Color
 
     private let size = CGFloat(50)

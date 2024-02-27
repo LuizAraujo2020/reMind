@@ -51,13 +51,13 @@ extension Box : Identifiable {
 
 extension Box: CoreDataModel {
     var theme: reTheme {
-        return reTheme(rawValue: Int(self.rawTheme)) ?? reTheme.lavender
+        return reTheme(rawValue: self.rawTheme) ?? reTheme.lavender
     }
 
     var numberOfTerms: Int { self.terms?.count ?? 0 }
 }
 
-enum reTheme: Int, CaseIterable {
+enum reTheme: Int16, CaseIterable {
     case aquamarine = 0
     case mauve
     case lavender
@@ -79,29 +79,39 @@ enum reTheme: Int, CaseIterable {
 }
 
 struct BoxAux: Identifiable {
-    internal init(id: UUID = UUID(), name: String, keywords: String, descriptions: String, rawTheme: Int16, terms: [TermAux]) {
-        self.id = id
-        self.name = name
-        self.keywords = keywords
-        self.descriptions = descriptions
-        self.rawTheme = Int(rawTheme)
-        self.terms = terms
-    }
-
-    internal init(box: Box) {
-        self.id = box.identifier ?? UUID()
-        self.name = box.name ?? ""
-        self.keywords = box.keywords
-        self.descriptions = box.descriptions
-        self.rawTheme = Int(box.rawTheme)
-        self.terms = []
-    }
 
     var id = UUID()
 
     var name: String
     var keywords: String
     var descriptions: String
-    var rawTheme: Int
+    var rawTheme: Int16
     var terms: [TermAux]
+
+    internal init(id: UUID = UUID(), name: String, keywords: String, descriptions: String, rawTheme: Int16, terms: [TermAux]) {
+        self.id = id
+        self.name = name
+        self.keywords = keywords
+        self.descriptions = descriptions
+        self.rawTheme = rawTheme
+        self.terms = terms
+    }
+
+    internal init(box: Box) {
+        self.id = box.identifier
+        self.name = box.name
+        self.keywords = box.keywords
+        self.descriptions = box.descriptions
+        self.rawTheme = box.rawTheme
+        self.terms = []
+    }
+
+    internal init() {
+        self.id = UUID()
+        self.name = ""
+        self.keywords = ""
+        self.descriptions = ""
+        self.rawTheme = 0
+        self.terms = []
+    }
 }

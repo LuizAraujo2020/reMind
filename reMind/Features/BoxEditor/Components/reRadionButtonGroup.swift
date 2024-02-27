@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct reRadionButtonGroup: View {
-    @Binding var currentSelection: Int
+    @Binding var currentSelection: Int16
 
     @State var title: String? = ""
 

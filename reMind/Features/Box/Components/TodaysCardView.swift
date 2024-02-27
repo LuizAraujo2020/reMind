@@ -16,7 +16,7 @@ struct TodaysCardView: View {
             Text("Today's Cards")
                 .font(.title)
                 .fontWeight(.semibold)
-            Text("\(numberOfPendingCards) cards to review")
+            Text("\(numberOfPendingCards) card\(numberOfPendingCards == 1 ? "": "s") to review")
                 .font(.title3)
 
             Button(action: {

@@ -34,7 +34,7 @@ extension Term: CoreDataModel {
     }
 
     var theme: reTheme {
-        return reTheme(rawValue: Int(self.rawTheme)) ?? reTheme.lavender
+        return reTheme(rawValue: self.rawTheme) ?? reTheme.lavender
     }
 }
 
