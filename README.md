@@ -19,7 +19,8 @@
     
 ● 3.3.Box
     a. ✅ Listar termos;
-    b. Pesquisa de termos;
+    b. ✅ Pesquisa de termos;
+    b. ✅ Pesquisa de boxes;
     c. ✅ Contar o número de termos pendentes de revisão; 
     d. ✅ Editar Box;
     e. ✅ Adicionar novo termo; 
