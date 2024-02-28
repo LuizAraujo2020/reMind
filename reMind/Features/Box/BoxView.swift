@@ -9,11 +9,13 @@ import SwiftUI
 
 struct BoxView: View {
     @ObservedObject var box: Box
+    @Binding var terms: [Term]
 
     @State private var isEditingBox = false
+    @State private var isEditingTerm = false
     @State private var isCreatingTerm = false
     @State private var searchText: String = ""
-
+    @State private var termIndex = 0
 
     var termsToReview: [Term]
     let createTerm: (_ termAux: TermAux) -> Void
@@ -35,23 +37,43 @@ struct BoxView: View {
         List {
             TodaysCardView(numberOfPendingCards: termsToReview.count,
                            theme: reTheme(rawValue: box.rawTheme) ?? .aquamarine)
+            .onAppear {
+                let termsSet = box.terms as? Set<Term> ?? []
+                let aux = Array(termsSet).sorted { lhs, rhs in
+                    (lhs.value) < (rhs.value)
+                }
+
+                terms = aux
+            }
             Section {
-                ForEach(filteredTerms, id: \.self) { term in
+                ForEach(terms.indices, id: \.self) { index in
                     NavigationLink {
                         SwipperView(
                             review: SwipeReview(termsToReview: termsToReview, termsReviewed: [])
                         )
 
                     } label: {
-                        Text("\(term.isPending ? "->" : "") \(term.value)")
+                        Text("\(terms[index].isPending ? "->" : "") \(terms[index].value)")
                             .padding(.vertical, 8)
                             .fontWeight(.bold)
                             .swipeActions(edge: .trailing) {
                                 Button(role: .destructive) {
                                     print("delete")
-                                    term.destroy()
+                                    terms[index].destroy()
                                 } label: {
                                     Image(systemName: "trash")
+                                }
+                            }
+                            .swipeActions(edge: .leading) {
+                                Button {
+                                    print("edit term")
+                                    isEditingTerm = true
+                                    termIndex = index
+                                } label: {
+                                    //                                    ZStack {
+                                    //                                        Rectangle()
+                                    Image(systemName: "square.and.pencil")
+                                    //                                    }
                                 }
                             }
                     }
@@ -93,12 +115,29 @@ struct BoxView: View {
             BoxEditorView(box: box)
         }
         .sheet(isPresented: $isCreatingTerm) {
-            TermEditorView(
+            TermCreatorView(
                 term: "",
                 meaning: "",
                 boxID: box.identifier,
                 createTerm: createTerm
             )
+        }
+        .sheet(isPresented: $isEditingTerm) {
+            TermEditorView(
+                term: terms[termIndex],
+////            TermEditorView(
+                value: terms[termIndex].value,
+                meaning: terms[termIndex].meaning
+////                boxID: box.identifier,
+////                editTerm: viewModel.editTerm
+            )
+//                term: filteredTerms[termIndex],
+//                value: terms[termIndex].value,
+//                meaning: terms[termIndex].meaning
+//            ) { value, meaning in
+//                terms[termIndex].setValue(value, forKey: "value")
+//                terms[termIndex].setValue(meaning, forKey: "meaning")
+//            }
         }
     }
 }
@@ -131,6 +170,7 @@ struct BoxView_Previews: PreviewProvider {
         NavigationStack {
             BoxView(
                 box: BoxView_Previews.box,
+                terms: .constant([]),
                 termsToReview: [],
                 createTerm: { _ in })
         }

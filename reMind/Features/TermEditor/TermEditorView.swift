@@ -10,16 +10,18 @@ import SwiftUI
 struct TermEditorView: View {
     @Environment(\.dismiss) var dismiss
 
-    @State var term: String
+    @ObservedObject var term: Term
+    @State var value: String
     @State var meaning: String
-    var boxID: UUID
-
-    let createTerm: (TermAux) -> Void
+//    var boxID: UUID
+//
+//    let editTerm: (TermAux) -> Void
+//    let editTerm: (String, String) -> Void
 
     var body: some View {
         NavigationStack {
             VStack(spacing: 20) {
-                reTextField(text: $term, title: "Term")
+                reTextField(text: $value, title: "Term")
 
                 reTextField(text: $meaning, title: "Meaning")
 
@@ -29,12 +31,17 @@ struct TermEditorView: View {
                     print("Save and Add New")
 
                     DispatchQueue.global().async {
-                        createTerm(TermAux(boxID: boxID, meaning: meaning, term: term))
+//                        editTerm(value, meaning)
 //                        createTerm(TermAux(boxID: <#T##UUID#>, meaning: <#T##String#>, term: <#T##String#>)
+//                        term.value = value
+//                        term.meaning = meaning
+//
+                        term.setValue(value, forKey: "value")
+                        term.setValue(meaning, forKey: "meaning")
                     }
 
-                    term = ""
-                    meaning = ""
+//                    term = ""
+//                    meaning = ""
 
                 } label: {
                     Text("Save and Add New")
@@ -57,7 +64,15 @@ struct TermEditorView: View {
 
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button("Save") {
-                        createTerm(TermAux(boxID: boxID, meaning: meaning, term: term))
+//                        editTerm(TermAux(boxID: boxID, meaning: meaning, term: term))
+//                        term.mutableSetValue(forKey: "value").add(value)
+//                        term.mutableSetValue(forKey: "meaning").add(meaning)
+//                        term.value = value
+//                        term.meaning = meaning
+                        term.setValue(value, forKey: "value")
+                        term.setValue(meaning, forKey: "meaning")
+
+//                        editTerm(value, meaning)
                         dismiss()
                     }
                     .fontWeight(.bold)
@@ -68,5 +83,7 @@ struct TermEditorView: View {
 }
 
 #Preview {
-    TermEditorView(term: "", meaning: "", boxID: UUID()) { _ in }
+//    TermEditorView(value: "", meaning: "") { _, _ in }
+//    TermEditorView(term: BoxView_Previews.terms[0], value: "", meaning: "")
+    TermEditorView(term: BoxView_Previews.terms[0], value: "", meaning: "")
 }

@@ -12,6 +12,20 @@ struct BoxesView: View {
     @ObservedObject var viewModel: BoxesViewModel
 
     @State var isCreatingNewBox = false
+    @State private var searchText = ""
+
+    private var filteredBoxes: [Box] {
+
+        let boxes = viewModel.boxes.sorted { lhs, rhs in
+            lhs.name < rhs.name
+        }
+
+        if searchText.isEmpty {
+            return boxes
+        } else {
+            return boxes.filter { ($0.name).contains(searchText) }
+        }
+    }
 
     private let columns: [GridItem] = [
         GridItem(.adaptive(minimum: 140), spacing: 20),
@@ -26,6 +40,7 @@ struct BoxesView: View {
                         NavigationLink {
                             BoxView(
                                 box: box,
+                                terms: $viewModel.terms,
                                 termsToReview: viewModel.getPendingTerms(of: box),
                                 createTerm: viewModel.createTerm
                             )
@@ -51,6 +66,7 @@ struct BoxesView: View {
                 }
             }
         }
+        .searchable(text: $searchText, prompt: "")
         .sheet(isPresented: $isCreatingNewBox) {
             BoxCreationView(create: viewModel.createNewBox)
         }

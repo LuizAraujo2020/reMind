@@ -11,6 +11,7 @@ import CoreData
 @MainActor
 final class BoxesViewModel: ObservableObject {
     @Published var boxes = [Box]()
+    @Published var terms = [Term]()
 
     init() {
         mockInit()
@@ -111,5 +112,6 @@ final class BoxesViewModel: ObservableObject {
         }
 
         fetch()
+        terms.append(term)
     }
 }
