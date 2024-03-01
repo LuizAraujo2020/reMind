@@ -34,9 +34,11 @@ struct BoxView: View {
     }
 
     var body: some View {
-        List {
-            TodaysCardView(numberOfPendingCards: termsToReview.count,
-                           theme: reTheme(rawValue: box.rawTheme) ?? .aquamarine)
+        VStack {
+            TodaysCardView(
+                terms: $terms,
+//                numberOfPendingCards: termsToReview.count,
+                theme: reTheme(rawValue: box.rawTheme) ?? .aquamarine)
             .onAppear {
                 let termsSet = box.terms as? Set<Term> ?? []
                 let aux = Array(termsSet).sorted { lhs, rhs in
@@ -45,53 +47,55 @@ struct BoxView: View {
 
                 terms = aux
             }
-            Section {
-                ForEach(terms.indices, id: \.self) { index in
-                    NavigationLink {
-                        SwipperView(
-                            review: SwipeReview(termsToReview: termsToReview, termsReviewed: [])
-                        )
+            .padding(.horizontal)
 
-                    } label: {
-                        Text("\(terms[index].isPending ? "->" : "") \(terms[index].value)")
-                            .padding(.vertical, 8)
-                            .fontWeight(.bold)
-                            .swipeActions(edge: .trailing) {
-                                Button(role: .destructive) {
-                                    print("delete")
-                                    terms[index].destroy()
-                                } label: {
-                                    Image(systemName: "trash")
+            List {
+                Section {
+                    ForEach(terms.indices, id: \.self) { index in
+                        NavigationLink {
+                            SwipperView(review: SwipeReview(termsToReview: [terms[index]], termsReviewed: []))
+
+                        } label: {
+                            Text("\(terms[index].value)")
+                                .padding(.vertical, 8)
+                                .fontWeight(terms[index].isPending ? .bold : .regular)
+                                .swipeActions(edge: .trailing) {
+                                    Button(role: .destructive) {
+                                        print("delete")
+                                        terms[index].destroy()
+                                    } label: {
+                                        Image(systemName: "trash")
+                                    }
                                 }
-                            }
-                            .swipeActions(edge: .leading) {
-                                Button {
-                                    print("edit term")
-                                    isEditingTerm = true
-                                    termIndex = index
-                                } label: {
-                                    //                                    ZStack {
-                                    //                                        Rectangle()
-                                    Image(systemName: "square.and.pencil")
-                                    //                                    }
+                                .swipeActions(edge: .leading) {
+                                    Button {
+                                        print("edit term")
+                                        isEditingTerm = true
+                                        termIndex = index
+                                    } label: {
+                                        //                                    ZStack {
+                                        //                                        Rectangle()
+                                        Image(systemName: "square.and.pencil")
+                                        //                                    }
+                                    }
                                 }
-                            }
+                        }
+
                     }
-
+                } header: {
+                    Text("All Cards")
+                        .textCase(.none)
+                        .font(.title3)
+                        .fontWeight(.bold)
+                        .foregroundColor(Palette.label.render)
+                        .padding(.leading, -16)
+                        .padding(.bottom, 16)
                 }
-            } header: {
-                Text("All Cards")
-                    .textCase(.none)
-                    .font(.title3)
-                    .fontWeight(.bold)
-                    .foregroundColor(Palette.label.render)
-                    .padding(.leading, -16)
-                    .padding(.bottom, 16)
-            }
 
+            }
+            .scrollContentBackground(.hidden)
+            .background(reBackground())
         }
-        .scrollContentBackground(.hidden)
-        .background(reBackground())
         .navigationTitle(box.name)
         .searchable(text: $searchText, prompt: "")
         .toolbar {

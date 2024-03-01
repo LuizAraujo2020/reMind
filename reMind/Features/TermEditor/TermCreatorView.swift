@@ -30,11 +30,10 @@ struct TermCreatorView: View {
 
                     DispatchQueue.global().async {
                         createTerm(TermAux(boxID: boxID, meaning: meaning, term: term))
-                        //                        createTerm(TermAux(boxID: <#T##UUID#>, meaning: <#T##String#>, term: <#T##String#>)
-                    }
 
-                    term = ""
-                    meaning = ""
+                        term = ""
+                        meaning = ""
+                    }
 
                 } label: {
                     Text("Save and Add New")

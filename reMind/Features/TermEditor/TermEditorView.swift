@@ -28,7 +28,6 @@ struct TermEditorView: View {
                 Spacer()
 
                 Button {
-                    print("Save and Add New")
 
                     DispatchQueue.global().async {
 //                        editTerm(value, meaning)
@@ -44,7 +43,7 @@ struct TermEditorView: View {
 //                    meaning = ""
 
                 } label: {
-                    Text("Save and Add New")
+                    Text("Save Changes")
                         .frame(maxWidth: .infinity)
                 }
                 .buttonStyle(reButtonStyle())

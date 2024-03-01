@@ -99,7 +99,7 @@ final class BoxesViewModel: ObservableObject {
 
         term.creationDate = Date()
         term.identifier = termAux.id
-        term.lastReview = Calendar.current.date(byAdding: .day, value: -1, to: Date()) ?? Date()
+        term.lastReview = /*Calendar.current.date(byAdding: .day, value: -1, to: Date()) ?? */Date()
 
         term.rawSRS = 0
 
@@ -111,7 +111,10 @@ final class BoxesViewModel: ObservableObject {
             }
         }
 
-        fetch()
-        terms.append(term)
+        DispatchQueue.main.async { [weak self] in
+            self?.fetch()
+            self?.terms.append(term)
+        }
     }
 }
+
