@@ -17,7 +17,7 @@
     *  ✅ Lógica da data lastReview
     
     
-● 3. Box
+● 3. ✅ Box
     a. ✅ Listar termos;
     b. ✅ Pesquisa de termos;
     b. ✅ Pesquisa de boxes;
@@ -26,12 +26,12 @@
     e. ✅ Adicionar novo termo; 
     f. ✅ Ir para o Swipper;
     g. ✅ Editar termo; 
-    h. ✅ Deletar termo;
+    h. ✅ Deletar termo.
      
      
-● 4.NewTerm(Create e Update)
-    a. Input: termo (50), significado (150);
-    b. UUID, data de criação, data da próxima revisão, box UUID;
+● 4. NewTerm(Create e Update)
+    a. ✅ Input: termo (50), significado (150);
+    b. ✅ UUID, data de criação, data da próxima revisão, box UUID;
     c. Revisão: 1 dia, 2 dias, 3 dias, 5 dias, 7 dias, 14 dias, 30 dias;
     d. ✅ "Save and Add New" - Para facilitar a adição de novos termos;
         i.   ✅ Salvar os dados preenchidos; 
@@ -39,16 +39,21 @@
         iii. ✅ Permanecer na tela.
         
         
-● 5. Swipper
+● 5. ✅ Swipper
     a. ✅ Exibir o termo e significado (tap);
     b. ✅ Contar o número de termos pendentes de revisão;
     c. ✅ Swipe para a esquerda = ainda estou aprendendo este termo;
     d. ✅ Swipe para a direita = eu lembro deste termo;
-    e. Finalizar a revisão antes de visualizar todos os termos; 
-    *  Botão que inicia todas as revisões;
-    *  Iniciar uma única revisão
+    e. ✅ Finalizar a revisão antes de visualizar todos os termos; 
+    *  ✅ Botão que inicia todas as revisões;
+    *  ✅ Iniciar uma única revisão/
     
     
-● 6. Swipper Report
-    a. Listar todos os termos revisados;
-    b. Ao clicar em um termo, a row se expande e o significado é exibido;
+● 6. ✅ Swipper Report
+    a. ✅ Listar todos os termos revisados;
+    b. ✅ Ao clicar em um termo, a row se expande e o significado é exibido;
+        
+        
+* MISC
+    *  ✅ versionamento Git/GitHub
+    *  ✅ commits semânticos

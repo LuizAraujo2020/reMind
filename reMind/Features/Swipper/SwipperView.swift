@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct SwipperView: View {
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+
     @State var review: SwipeReview
     @State private var direction: SwipperDirection = .none
     @State private var currentTerm = 0
@@ -28,13 +30,15 @@ struct SwipperView: View {
                 },
                             backContent: {
                     Text(review.termsToReview[currentTerm].meaning)
-                    //                    Text("Meaning")
                 })
             }
+            
             Spacer()
 
             Button(action: {
                 print("finish review")
+                presentationMode.wrappedValue.dismiss()
+
             }, label: {
                 Text("Finish Review")
                     .frame(maxWidth: .infinity, alignment: .center)

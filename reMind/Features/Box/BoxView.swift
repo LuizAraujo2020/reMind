@@ -37,7 +37,7 @@ struct BoxView: View {
         VStack {
             TodaysCardView(
                 terms: $terms,
-//                numberOfPendingCards: termsToReview.count,
+                //                numberOfPendingCards: termsToReview.count,
                 theme: reTheme(rawValue: box.rawTheme) ?? .aquamarine)
             .onAppear {
                 let termsSet = box.terms as? Set<Term> ?? []
@@ -49,51 +49,69 @@ struct BoxView: View {
             }
             .padding(.horizontal)
 
-            List {
-                Section {
-                    ForEach(terms.indices, id: \.self) { index in
-                        NavigationLink {
-                            SwipperView(review: SwipeReview(termsToReview: [terms[index]], termsReviewed: []))
+            VStack {
+                List {
+                    Section {
+                        ForEach(terms.indices, id: \.self) { index in
+                            NavigationLink {
+                                SwipperView(review: SwipeReview(termsToReview: [terms[index]], termsReviewed: []))
 
-                        } label: {
-                            Text("\(terms[index].value)")
-                                .padding(.vertical, 8)
-                                .fontWeight(terms[index].isPending ? .bold : .regular)
-                                .swipeActions(edge: .trailing) {
-                                    Button(role: .destructive) {
-                                        print("delete")
-                                        terms[index].destroy()
-                                    } label: {
-                                        Image(systemName: "trash")
+                            } label: {
+                                Text("\(terms[index].value)")
+                                    .padding(.vertical, 8)
+                                    .fontWeight(terms[index].isPending ? .bold : .regular)
+                                    .swipeActions(edge: .trailing) {
+                                        Button(role: .destructive) {
+                                            print("delete")
+                                            terms[index].destroy()
+                                        } label: {
+                                            Image(systemName: "trash")
+                                        }
                                     }
-                                }
-                                .swipeActions(edge: .leading) {
-                                    Button {
-                                        print("edit term")
-                                        isEditingTerm = true
-                                        termIndex = index
-                                    } label: {
-                                        //                                    ZStack {
-                                        //                                        Rectangle()
-                                        Image(systemName: "square.and.pencil")
-                                        //                                    }
+                                    .swipeActions(edge: .leading) {
+                                        Button {
+                                            print("edit term")
+                                            isEditingTerm = true
+                                            termIndex = index
+                                        } label: {
+                                            //                                    ZStack {
+                                            //                                        Rectangle()
+                                            Image(systemName: "square.and.pencil")
+                                            //                                    }
+                                        }
                                     }
-                                }
+                            }
+
                         }
-
+                    } header: {
+                        Text("All Cards")
+                            .textCase(.none)
+                            .font(.title3)
+                            .fontWeight(.bold)
+                            .foregroundColor(Palette.label.render)
+                            .padding(.leading, -16)
+                            .padding(.bottom, 16)
                     }
-                } header: {
-                    Text("All Cards")
-                        .textCase(.none)
-                        .font(.title3)
-                        .fontWeight(.bold)
-                        .foregroundColor(Palette.label.render)
-                        .padding(.leading, -16)
-                        .padding(.bottom, 16)
-                }
 
+                }
+                .scrollContentBackground(.hidden)
+                .background(reBackground())
+
+                Spacer()
+
+                /// Show Swipper Report button
+                NavigationLink {
+                    SwipperReportView(terms: terms)
+
+                } label: {
+                    Text("Show Report")
+                        .frame(maxWidth: .infinity)
+                }
+                .buttonStyle(reButtonStyle())
+                .padding()
+                .opacity(terms.isEmpty ? 0.5 : 1.0)
+                .disabled(terms.isEmpty)
             }
-            .scrollContentBackground(.hidden)
             .background(reBackground())
         }
         .navigationTitle(box.name)

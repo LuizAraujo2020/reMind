@@ -77,9 +77,11 @@ struct BoxEditorView: View {
                             try validation.isntEmpty(box.name)
                             try validation.maxSize(box.name, 50)
                             fieldName = false
+
                             fieldKey = true
                             try validation.maxSize(box.keywords, 150)
                             fieldKey = false
+                            
                             fieldDescription = true
                             try validation.maxSize(box.descriptions, 150)
                             fieldKey = false
